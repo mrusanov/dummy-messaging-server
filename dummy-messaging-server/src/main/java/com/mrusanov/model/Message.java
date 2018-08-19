@@ -8,8 +8,6 @@ import com.mrusanov.business.validators.MessageValidator;
 
 public abstract class Message {
 
-	private MessageType type;
-
 	private String payload;
 
 	private List<MessageValidator> validators;
@@ -18,6 +16,8 @@ public abstract class Message {
 		validators = new ArrayList<>();
 		setPayload(payload);
 	}
+
+	public abstract MessageType getType();
 
 	public final void checkPreconditions() throws PreconditionViolatedException {
 		for (MessageValidator validator : validators) {
@@ -35,14 +35,6 @@ public abstract class Message {
 
 	public void setPayload(String payload) {
 		this.payload = payload;
-	}
-
-	public String getType() {
-		return type.value();
-	}
-
-	public void setType(MessageType type) {
-		this.type = type;
 	}
 
 }

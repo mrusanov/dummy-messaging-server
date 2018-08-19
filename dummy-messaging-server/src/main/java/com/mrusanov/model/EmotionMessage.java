@@ -6,8 +6,12 @@ public class EmotionMessage extends Message {
 
 	public EmotionMessage(String payload) {
 		super(payload);
-		setType(MessageType.EMOTION);
 		addValidator(new EmotionMessageValidator());
+	}
+
+	@Override
+	public MessageType getType() {
+		return MessageType.EMOTION;
 	}
 
 }

@@ -6,8 +6,12 @@ public class TextMessage extends Message {
 
 	public TextMessage(String payload) {
 		super(payload);
-		setType(MessageType.TEXT);
 		addValidator(new TextMessageValidator());
+	}
+
+	@Override
+	public MessageType getType() {
+		return MessageType.TEXT;
 	}
 
 }
