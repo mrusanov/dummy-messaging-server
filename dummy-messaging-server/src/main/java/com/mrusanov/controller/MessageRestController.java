@@ -25,11 +25,12 @@ public class MessageRestController {
 	public ResponseEntity<String> sendMessage(@PathVariable(value = "type") String type,
 			@ModelAttribute(name = "payload") String payload) {
 
-		HttpStatus status = HttpStatus.CREATED;
+		HttpStatus status;
 
 		try {
 			Message message = MessageFactory.createMessage(type, payload);
 			message.checkPreconditions();
+			status = HttpStatus.CREATED;
 		} catch (InvalidParameterException e) {
 			// When type is not supported or payload parameter is missing.
 			status = HttpStatus.BAD_REQUEST;
