@@ -75,14 +75,14 @@ public class DummyMessagingServerTest {
 	
 	@Test
 	public void testWithTextMessageLongerThan160Characters() throws Exception {
-		StringBuilder longLessage = new StringBuilder("T");
-		while(longLessage.length() < 161) {
-			longLessage.append("T");
+		StringBuilder longTextMessage = new StringBuilder("T");
+		while(longTextMessage.length() < 161) {
+			longTextMessage.append("T");
 		}
 		
 		mockMvc.perform(MockMvcRequestBuilders.post(SEND_TEXT_URI)
 				.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-				.param(PAYLOAD_PARAM_KEY, longLessage.toString()))
+				.param(PAYLOAD_PARAM_KEY, longTextMessage.toString()))
 				.andExpect(MockMvcResultMatchers.status().isPreconditionFailed());
 	}
 	
@@ -104,14 +104,14 @@ public class DummyMessagingServerTest {
 	
 	@Test
 	public void testWithEmotionMessageLongerThan10Characters() throws Exception {
-		StringBuilder longLessage = new StringBuilder("E");
-		while(longLessage.length() < 11) {
-			longLessage.append("E");
+		StringBuilder longEmotionMessage = new StringBuilder("E");
+		while(longEmotionMessage.length() < 11) {
+			longEmotionMessage.append("E");
 		}
 		
 		mockMvc.perform(MockMvcRequestBuilders.post(SEND_EMOTION_URI)
 				.header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-				.param(PAYLOAD_PARAM_KEY, longLessage.toString()))
+				.param(PAYLOAD_PARAM_KEY, longEmotionMessage.toString()))
 				.andExpect(MockMvcResultMatchers.status().isPreconditionFailed());
 	}
 	
